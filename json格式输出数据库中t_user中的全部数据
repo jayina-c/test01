@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+    .user{
+        font-size:20px;
+        border-collapse: collapse;
+    }
+
+   .user tr td{
+        border:1px solid blue;
+        width:200px;
+        height:30px;
+        line-height:30px;
+        text-align:center;
+   }
+    </style>
+    <script>
+    </script>
+</head>
+<body>
+<button><a href="json.php">查询全部</a></button>
+<?php
+header("Content-type:text/html;charset=utf-8");
+$link=mysql_connect("localhost","root","993416");
+mysql_select_db("test",$link);
+$sql="select * from t_user";
+$result=mysql_query($sql,$link);
+//从结果集中获取数据
+?>
+
+<table class="user">
+  <caption style="  font-size:25px;line-height:50px;height:50px;">用户信息表</caption>
+<tr>
+<th  style="border:1px solid blue;width:200px;">用户名</th>
+<th  style="border:1px solid blue;width:200px;">用户密码</th>
+<th  style="border:1px solid blue;width:200px;">注册时间</th>
+</tr>
+
+<?php while($arrresult=mysql_fetch_array($result)){?>
+
+<tr>
+<td><?php echo $arrresult['user_name']; ?></td>
+<td><?php echo $arrresult['user_pwd']; ?></td>
+<td><?php echo $arrresult['user_time']; ?></td>
+</tr>
+
+<?php};
+?>
+</table>
+<select>
+</body>
+</html>
+
